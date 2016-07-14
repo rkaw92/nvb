@@ -58,6 +58,10 @@ Connect to an nvb server and indicate the client's presence.
 # Options
 ### options.parts : Array.\<string\>
 The set of client names to await. When all of them have connected, the promise resolves. Only used on the server.
+### options.name : string
+The name to pass to the server for it to mark as "finished". Only used on the client.
+### options.prefix : string
+The prefix to put before "/$name" in the URL path, where $name is the client name. For an example prefix of "/backend/register" and a name of "app", the constructed request path is "/backend/register/app". Note that the server only interprets the last part of the path. This makes the parameter useful when putting the nvb listener behind a reverse proxy (haproxy?) and routing only some paths to it, as it does not matter what the initial part of the path is.
 ### options.address : string
 The address to listen on or to connect to. By default, `::` is used on the server (all interfaces) and `::1` on the client (localhost).
 ### options.port : number
