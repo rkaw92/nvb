@@ -1,0 +1,33 @@
+{
+  "name": "nvb",
+  "version": "0.1.0",
+  "description": "a frugal utility and library for awaiting HTTP callbacks from builds etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "listen": "bin/nvb package.json",
+    "notify": "bin/nvb-client package.json"
+  },
+  "bin": {
+    "nvb": "./bin/nvb",
+    "nvb-client": "./bin/nvb-client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkaw92/nvb.git"
+  },
+  "keywords": [
+    "http",
+    "callback",
+    "minimal",
+    "build",
+    "await",
+    "sync"
+  ],
+  "author": "Robert Kawecki <robert+npm@rkaw.pl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rkaw92/nvb/issues"
+  },
+  "homepage": "https://github.com/rkaw92/nvb#readme"
+}

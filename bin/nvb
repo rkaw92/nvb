@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+'use strict';
+const listen = require('../lib/listen.js');
+
+// Run the server. On success (when all parts have called back for completion), exit the process with a status code of zero. Otherwise, status 2 marks a timeout, and 1 is for other failures.
+listen().then(function() {
+	process.exit(0);
+}, function(error) {
+	console.error(error.message);
+	process.exit(error.name === 'Timeout' ? 2 : 1);
+});

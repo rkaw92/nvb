@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+'use strict';
+const notify = require('../lib/notify');
+
+let remainingRetries = 5;
+const retryDelay = 2000;
+
+(function tryNotifying() {
+	return notify().catch(function(error) {
+		// Guard clause: do not retry if the error is a 4xx (client error):
+		if (error.statusCode >= 400 && error.statusCode < 500) {
+			throw error;
+		}
+		if (remainingRetries > 0) {
+			remainingRetries -= 1;
+			return new Promise(function(fulfill, reject) {
+				setTimeout(function() {
+					tryNotifying().then(fulfill, reject);
+				}, retryDelay);
+			});
+		}
+		else {
+			throw error;
+		}
+	});
+})().then(function() {
+	process.exit(0);
+}, function(error) {
+	console.error(error.message);
+	process.exit(2);
+});
